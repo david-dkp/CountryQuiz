@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+       opacity: 1;
+    }
+}
+
 .app{
     display: flex;
     flex-direction: column;
@@ -15,6 +25,7 @@ main {
     flex-direction: column;
     width: min(100%, 464px);
     gap: 5px;
+    margin: 2rem 2rem 1rem 2rem;
 }
 
 .app-title {
@@ -80,15 +91,35 @@ footer .develop-name {
 .quiz-container .response-container {
     border: 2px solid rgba(96, 102, 208, 0.7);
     border-radius: 12px;
-    padding: 5px 15px;
+    padding: 1.5em 1em;
+    line-height: 0;
     color: #6066D0CC;
     display: flex;
     align-items: center;
     transition: all 0.15s ease;
+    background: none;
+    font-size: 1em;
+}
+
+.quiz-container .response-container.wrong {
+    color: white;
+    background: #EA8282;
+    transition: all 0.5s ease;
+    border-color: #EA8282;
+}
+
+.quiz-container .response-container.correct {
+    color: white;
+    background: #60BF88;
+    transition: all 0.5s ease;
+    border-color: #60BF88;
+}
+
+.quiz-container .response-container:enabled {
     cursor: pointer;
 }
 
-.quiz-container .response-container:hover {
+.quiz-container .response-container:enabled:hover {
     color: white;
     background-color: #F9A826;
     border: 2px solid white;
@@ -104,11 +135,30 @@ footer .develop-name {
     font-weight: 500;
 }
 
+.quiz-container .response-container .state-icon {
+    animation: 0.5s ease 0s fadeIn;
+    color: white;
+    margin-left: auto;
+}
+
+.next-button {
+    align-self: end;
+    padding: 0.8em 2em;
+    background: #F9A826;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.125em;
+    font-family: "Poppins", sans-serif;
+}
+
 .adventure-container {
     position: absolute;
-    width: 162px;
+    width: clamp(50px, 30vw, 162px);
     right: 0;
-    top: -75px;
+    top: 0;
+    transform: translateY(-60%);
 }
 
 .adventure-container img {

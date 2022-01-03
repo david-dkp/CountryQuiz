@@ -1,17 +1,37 @@
-import React from "react"
+import React, {useState} from "react"
 import AdventureUrl from "../assets/adventure.svg"
+import {CancelOutlined, CheckCircleOutlined} from "@material-ui/icons";
 
 function Quiz({quiz: {question, flagUrl, flagAlt, responses, answer}, onAnswered}) {
     const letters = ["A", "B", "C", "D"]
+    const [response, setResponse] = useState("")
+    const responded = response !== ""
 
-    const Response = ({letter, response}) => (
-        <div className={"response-container"}>
+    const handleOnResponseClick = (response) => {
+        setResponse(response)
+    }
+
+    const Response = ({letter, response, state}) => (
+        <button onClick={() => handleOnResponseClick(response)} disabled={responded} className={`response-container ${state}`}>
             <div className={"response-letter"}>
                 {letter}
             </div>
             <h3 className={"response"}>{response}</h3>
-        </div>
+            {state !== "" && (state === "correct" ? <CheckCircleOutlined className={"state-icon"} /> : <CancelOutlined className={"state-icon"}/>)}
+        </button>
     )
+
+    const getResponseState = (r) => {
+        if (!responded) return ""
+        if (response === r) {
+            return r === answer ? "correct" : "wrong"
+        }
+        if (response !== answer && r === answer) {
+            return "correct"
+        }
+
+        return ""
+    }
 
     return (
         <div className={"quiz-container"}>
@@ -20,7 +40,8 @@ function Quiz({quiz: {question, flagUrl, flagAlt, responses, answer}, onAnswered
                 <h2 className={"question"}>{question}</h2>
             </div>
             <div className={"adventure-container"}><img src={AdventureUrl}/> </div>
-            {responses.map((response, i) => (<Response key={i} response={response} letter={letters[i]}/>))}
+            {responses.map((r, i) => (<Response key={i} state={getResponseState(r)} response={r} letter={letters[i]}/>))}
+            {responded && <button className={"next-button"} onClick={() => onAnswered(response === answer)}>Next</button>}
         </div>
     )
 }
