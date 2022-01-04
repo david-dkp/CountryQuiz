@@ -1,6 +1,16 @@
 import "./App.css"
 import BackgroundUrl from "./assets/background.png"
 import Quiz from "./components/Quiz";
+import Results from "./components/Results";
+
+/*
+<Quiz quiz={{
+                    flagAlt: "lol",
+                    question: "Which country does this flag belong to?",
+                    responses: ["Vietnam", "Finland", "Sweden", "Austria"],
+                    answer: "Finland"
+                }} />
+ */
 
 function App() {
     return <div className="app" style={{
@@ -12,12 +22,7 @@ function App() {
         <main>
             <h1 className={"app-title"}>Country Quiz</h1>
             <div className={"quiz-panel"}>
-                <Quiz quiz={{
-                    flagAlt: "lol",
-                    question: "Which country does this flag belong to?",
-                    responses: ["Vietnam", "Finland", "Sweden", "Austria"],
-                    answer: "Finland"
-                }} />
+                <Results numberCorrectAnswer={5}/>
             </div>
         </main>
         <footer>
