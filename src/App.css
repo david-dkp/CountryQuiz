@@ -20,12 +20,13 @@
 }
 
 main {
-    margin-block: auto;
+    flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: min(100%, 464px);
     gap: 5px;
-    margin: 2rem 2rem 1rem 2rem;
+    margin-top: 1em;
 }
 
 .app-title {
@@ -40,12 +41,11 @@ main {
     background: white;
     border-radius: 24px;
     width: 100%;
-    overflow: hidden;
 }
 
 footer {
     color: white;
-    margin-top: auto;
+    margin-top: 2em;
     font-family: "Montserrat", sans-serif;
     text-align: center;
 }
@@ -93,8 +93,7 @@ footer .develop-name {
 .quiz-container .response-container {
     border: 2px solid rgba(96, 102, 208, 0.7);
     border-radius: 12px;
-    padding: 1.5em 1em;
-    line-height: 0;
+    padding: 0.6em 1em;
     color: #6066D0CC;
     display: flex;
     align-items: center;
@@ -153,6 +152,7 @@ footer .develop-name {
     font-weight: bold;
     font-size: 1.125em;
     font-family: "Poppins", sans-serif;
+    cursor: pointer;
 }
 
 .adventure-container {

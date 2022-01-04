@@ -34,14 +34,16 @@ function Quiz({quiz: {question, flagUrl, flagAlt, responses, answer}, onAnswered
     }
 
     return (
-        <div className={"quiz-container"}>
-            <div className={"question-container"}>
-                {flagUrl && <div className={"flag-container"}><img src={flagUrl} alt={flagAlt}/></div>}
-                <h2 className={"question"}>{question}</h2>
+        <div className={"quiz-wrapper"}>
+            <div className={"quiz-container"}>
+                <div className={"question-container"}>
+                    {flagUrl && <div className={"flag-container"}><img src={flagUrl} alt={flagAlt}/></div>}
+                    <h2 className={"question"}>{question}</h2>
+                </div>
+                <div className={"adventure-container"}><img src={AdventureUrl}/> </div>
+                {responses.map((r, i) => (<Response key={i} state={getResponseState(r)} response={r} letter={letters[i]}/>))}
+                {responded && <button className={"next-button"} onClick={() => onAnswered(response === answer)}>Next</button>}
             </div>
-            <div className={"adventure-container"}><img src={AdventureUrl}/> </div>
-            {responses.map((r, i) => (<Response key={i} state={getResponseState(r)} response={r} letter={letters[i]}/>))}
-            {responded && <button className={"next-button"} onClick={() => onAnswered(response === answer)}>Next</button>}
         </div>
     )
 }

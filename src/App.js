@@ -22,7 +22,12 @@ function App() {
         <main>
             <h1 className={"app-title"}>Country Quiz</h1>
             <div className={"quiz-panel"}>
-                <Results numberCorrectAnswer={5}/>
+                <Quiz quiz={{
+                    flagAlt: "lol",
+                    question: "Kuala Lampur is the capital of",
+                    responses: ["Vietnam", "Finland", "Sweden", "Austria"],
+                    answer: "Finland"
+                }} />
             </div>
         </main>
         <footer>
