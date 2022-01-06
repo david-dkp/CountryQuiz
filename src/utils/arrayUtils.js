@@ -1,5 +1,5 @@
 const shuffle = (array) => {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
@@ -16,4 +16,4 @@ const shuffle = (array) => {
     return array;
 }
 
-export default {shuffle}
+export {shuffle}

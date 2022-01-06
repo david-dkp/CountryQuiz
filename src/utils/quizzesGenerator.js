@@ -1,4 +1,4 @@
-import arrayUtils from "./arrayUtils";
+import {shuffle} from "./arrayUtils";
 
 const getResponses = (countries, currentCountry) => {
     const leftCountries = [...countries]
@@ -12,7 +12,7 @@ const getResponses = (countries, currentCountry) => {
         const randIndex = generateRandomIndex(leftCountries.length)
         const country = leftCountries[randIndex]
 
-        if (currentCountry === country.name.common){
+        if (currentCountry === country.name.common) {
             continue
         }
 
@@ -27,7 +27,7 @@ const getResponses = (countries, currentCountry) => {
 }
 
 const generateQuizzes = (countriesStore) => {
-    const shuffledlist = arrayUtils.shuffle(countriesStore)
+    const shuffledlist = shuffle(countriesStore)
     return shuffledlist.map((e, i, countries) => {
         return (i % 2 === 0 ? {
                 question: `${e.capital[0]} is the capital of`,
@@ -46,4 +46,4 @@ const generateQuizzes = (countriesStore) => {
     })
 }
 
-export default { generateQuizzes }
+export {generateQuizzes}
