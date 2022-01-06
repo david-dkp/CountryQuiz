@@ -49,7 +49,7 @@ function App() {
             <div className={`app-title-container`}><h1 className={`app-title ${loading ? "loading" : ""}`}>Country
                 Quiz</h1>
             </div>
-            {loading ? <div>sdfdsf</div> : <div className={"quiz-panel"}>
+            {loading ? <div className={"quiz-panel loading"}></div> : <div className={"quiz-panel"}>
                 {!showResult &&
                     <Quiz quiz={currentQuiz} onAnswered={onNextClick}/>}
                 <Results style={{display: showResult ? "flex" : "none"}} numberCorrectAnswer={correctAnswersCount} onTryAgainClick={onTryAgainClick}/>
