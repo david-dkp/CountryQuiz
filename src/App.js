@@ -1,10 +1,10 @@
 import "./App.css"
 import BackgroundUrl from "./assets/background.png"
 import {useEffect, useState} from "react";
-import countriesApi from "./apis/countriesApi";
+import {getCountries} from "./apis/countriesApi";
 import Results from "./components/Results";
 import Quiz from "./components/Quiz";
-import quizzesGenerator, {generateQuizzes} from "./utils/quizzesGenerator"
+import {generateQuizzes} from "./utils/quizzesGenerator"
 
 function App() {
     const [countriesStore, setCountriesStore] = useState([])
@@ -31,7 +31,7 @@ function App() {
     }
 
     useEffect(() => {
-        countriesApi.getCountries().then(r => {
+        getCountries().then(r => {
             const countries = r.filter(e => e.capital.length > 0)
             setCountriesStore(countries)
             setLeftQuizzes(generateQuizzes(countries))
@@ -49,10 +49,12 @@ function App() {
             <div className={`app-title-container`}><h1 className={`app-title ${loading ? "loading" : ""}`}>Country
                 Quiz</h1>
             </div>
-            {loading ? <div className={"quiz-panel loading"}></div> : <div className={"quiz-panel"}>
+            {loading ? <div className={"quiz-panel loading"}/> : <div className={"quiz-panel"}>
                 {!showResult &&
                     <Quiz quiz={currentQuiz} onAnswered={onNextClick}/>}
-                <Results style={{display: showResult ? "flex" : "none"}} numberCorrectAnswer={correctAnswersCount} onTryAgainClick={onTryAgainClick}/>
+                <Results style={{display: showResult ? "flex" : "none"}}
+                         numberCorrectAnswer={correctAnswersCount}
+                         onTryAgainClick={onTryAgainClick}/>
             </div>}
         </main>
         <footer>

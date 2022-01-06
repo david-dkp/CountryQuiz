@@ -6,11 +6,11 @@
     }
 
     100% {
-       opacity: 1;
+        opacity: 1;
     }
 }
 
-.app{
+.app {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +30,7 @@ main {
     font-size: 1em;
 }
 
-@media(max-width: 400px) {
+@media (max-width: 400px) {
     main {
         font-size: 0.8em;
     }
@@ -107,7 +107,7 @@ footer .develop-name {
     margin-top: 40px;
 }
 
-.question-container .flag-container img{
+.question-container .flag-container img {
     width: 100%;
     height: 100%;
 }
@@ -250,24 +250,51 @@ footer .develop-name {
 }
 
 @-webkit-keyframes LoadingAnim {
-    0%{background-position:79% 0%}
-    50%{background-position:22% 100%}
-    100%{background-position:79% 0%}
+    0% {
+        background-position: 79% 0%
+    }
+    50% {
+        background-position: 22% 100%
+    }
+    100% {
+        background-position: 79% 0%
+    }
 }
+
 @-moz-keyframes LoadingAnim {
-    0%{background-position:79% 0%}
-    50%{background-position:22% 100%}
-    100%{background-position:79% 0%}
+    0% {
+        background-position: 79% 0%
+    }
+    50% {
+        background-position: 22% 100%
+    }
+    100% {
+        background-position: 79% 0%
+    }
 }
+
 @-o-keyframes LoadingAnim {
-    0%{background-position:79% 0%}
-    50%{background-position:22% 100%}
-    100%{background-position:79% 0%}
+    0% {
+        background-position: 79% 0%
+    }
+    50% {
+        background-position: 22% 100%
+    }
+    100% {
+        background-position: 79% 0%
+    }
 }
+
 @keyframes LoadingAnim {
-    0%{background-position:79% 0%}
-    50%{background-position:22% 100%}
-    100%{background-position:79% 0%}
+    0% {
+        background-position: 79% 0%
+    }
+    50% {
+        background-position: 22% 100%
+    }
+    100% {
+        background-position: 79% 0%
+    }
 }
 
 
