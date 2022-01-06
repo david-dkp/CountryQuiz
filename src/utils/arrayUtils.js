@@ -16,4 +16,4 @@ const shuffle = (array) => {
     return array;
 }
 
-export {shuffle}
+export default {shuffle}

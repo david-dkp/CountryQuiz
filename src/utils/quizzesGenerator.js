@@ -46,4 +46,4 @@ const generateQuizzes = (countriesStore) => {
     })
 }
 
-export { generateQuizzes }
+export default { generateQuizzes }
