@@ -1,18 +1,44 @@
 import "./App.css"
 import BackgroundUrl from "./assets/background.png"
-import Quiz from "./components/Quiz";
+import {useEffect, useState} from "react";
+import countriesApi from "./apis/countriesApi";
 import Results from "./components/Results";
-
-/*
-<Quiz quiz={{
-                    flagAlt: "lol",
-                    question: "Which country does this flag belong to?",
-                    responses: ["Vietnam", "Finland", "Sweden", "Austria"],
-                    answer: "Finland"
-                }} />
- */
+import Quiz from "./components/Quiz";
+import quizzesGenerator, {generateQuizzes} from "./utils/quizzesGenerator"
 
 function App() {
+    const [countriesStore, setCountriesStore] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [correctAnswersCount, setCorrectAnswersCount] = useState(0)
+    const [leftQuizzes, setLeftQuizzes] = useState([])
+    const [showResult, setShowResults] = useState(false)
+
+    const currentQuiz = leftQuizzes[0]
+
+    const onNextClick = (isAnswerCorrect) => {
+        if (isAnswerCorrect) {
+            setCorrectAnswersCount(correctAnswersCount + 1)
+            setLeftQuizzes(leftQuizzes.slice(1, leftQuizzes.length))
+        } else {
+            setShowResults(true)
+        }
+    }
+
+    const onTryAgainClick = () => {
+        setCorrectAnswersCount(0)
+        setLeftQuizzes(generateQuizzes(countriesStore))
+        setShowResults(false)
+    }
+
+    useEffect(() => {
+        countriesApi.getCountries().then(r => {
+            const countries = r.filter(e => e.capital.length > 0)
+            setCountriesStore(countries)
+            setLeftQuizzes(generateQuizzes(countries))
+            setLoading(false)
+        })
+    }, [])
+
     return <div className="app" style={{
         backgroundImage: `url(${BackgroundUrl})`,
         backgroundPosition: 'center',
@@ -20,15 +46,14 @@ function App() {
         backgroundRepeat: 'no-repeat'
     }}>
         <main>
-            <h1 className={"app-title"}>Country Quiz</h1>
-            <div className={"quiz-panel"}>
-                <Quiz quiz={{
-                    flagAlt: "lol",
-                    question: "Kuala Lampur is the capital of",
-                    responses: ["Vietnam", "Finland", "Sweden", "Austria"],
-                    answer: "Finland"
-                }} />
+            <div className={`app-title-container`}><h1 className={`app-title ${loading ? "loading" : ""}`}>Country
+                Quiz</h1>
             </div>
+            {loading ? <div>sdfdsf</div> : <div className={"quiz-panel"}>
+                {!showResult &&
+                    <Quiz quiz={currentQuiz} onAnswered={onNextClick}/>}
+                <Results style={{display: showResult ? "flex" : "none"}} numberCorrectAnswer={correctAnswersCount} onTryAgainClick={onTryAgainClick}/>
+            </div>}
         </main>
         <footer>
             created by <span className={"develop-name"}>David</span> - devChallenges.io

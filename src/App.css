@@ -27,15 +27,36 @@ main {
     width: min(100%, 464px);
     gap: 5px;
     margin-top: 1em;
+    font-size: 1em;
+}
+
+@media(max-width: 400px) {
+    main {
+        font-size: 0.9em;
+    }
 }
 
 .app-title {
+    position: relative;
     color: white;
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 2em;
+    transition: all 1s ease;
+    left: 0;
+    flex-grow: 0;
 }
+
+.app-title.loading {
+    transition: all 0.5s ease-in;
+    flex: 1;
+}
+
+.app-title-container {
+    position: relative;
+}
+
 
 .quiz-panel {
     background: white;
