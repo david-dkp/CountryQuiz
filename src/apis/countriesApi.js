@@ -8,6 +8,4 @@ const getCountries = async () => {
     return fetch("https://restcountries.com/v3.1/all?fields=" + fieldsWanted.join(",")).then(r => r.json())
 }
 
-module.exports = {
-    getCountries
-}
+export { getCountries }

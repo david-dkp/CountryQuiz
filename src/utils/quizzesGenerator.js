@@ -1,4 +1,4 @@
-const arrayUtils = require("./arrayUtils")
+import arrayUtils from "./arrayUtils";
 
 const getResponses = (countries, currentCountry) => {
     const leftCountries = [...countries]
@@ -46,6 +46,4 @@ const generateQuizzes = (countriesStore) => {
     })
 }
 
-module.exports = {
-    generateQuizzes
-}
+export { generateQuizzes }
